@@ -1,4 +1,4 @@
-package com.rongxianren.highlevel_ui_recyclerview_1;
+package com.rongxianren.highlevel_ui_recyclerview_1.adapter;
 
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.rongxianren.highlevel_ui_recyclerview_1.R;
 
 import java.util.List;
 import java.util.Random;
@@ -19,7 +21,6 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     private List<String> data;
     private int[] colors = {R.color.colorAccent, R.color.colorBlue, R.color.colorGreen, R.color.colorPrimary, R.color.colorPrimaryDark};
     private Random random = new Random();
-
     private RecyclerItemClick recyclerItemClick;
 
     public MyRecyclerViewAdapter(List<String> data) {
@@ -40,13 +41,14 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         holder.textView.setTextColor(Color.parseColor("#000000"));
         holder.textView.setBackgroundColor(color);
 
-        if (null != recyclerItemClick)
+        if (null != recyclerItemClick) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     recyclerItemClick.itemClick(position);
                 }
             });
+        }
     }
 
     @Override
