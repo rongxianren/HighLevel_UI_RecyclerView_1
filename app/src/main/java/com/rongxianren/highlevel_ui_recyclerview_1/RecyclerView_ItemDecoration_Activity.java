@@ -24,7 +24,6 @@ public class RecyclerView_ItemDecoration_Activity extends AppCompatActivity impl
 
 
     private RecyclerView recyclerView;
-    //    private String[] data = {"hello word", "wty is hero", "I love fishC", "hahhhahahhahahah", "bitch"};
     private boolean layoutFlag = true;
     private MyRecyclerViewAdapter myRecyclerViewAdapter = null;
     private Random random = new Random();
