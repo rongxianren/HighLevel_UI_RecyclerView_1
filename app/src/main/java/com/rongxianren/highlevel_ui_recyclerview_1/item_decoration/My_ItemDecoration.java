@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -22,7 +24,7 @@ public class My_ItemDecoration extends RecyclerView.ItemDecoration {
 
     public My_ItemDecoration(Context context, int orientation) {
         this.mContext = context;
-        mDivider = mContext.getDrawable(R.drawable.item_divider);
+        mDivider = ContextCompat.getDrawable(mContext, R.drawable.item_divider);
         if (orientation != LinearLayoutManager.VERTICAL && orientation != LinearLayoutManager.VERTICAL) {
             throw new IllegalArgumentException(" please enter a correct orientation params");
         }
@@ -38,7 +40,6 @@ public class My_ItemDecoration extends RecyclerView.ItemDecoration {
 //        } else if (mOrientation == LinearLayoutManager.VERTICAL) {
 //            drawHorizontalDivider(c, parent);
 //        }
-
         drawVerticalDivider(c, parent);
         drawHorizontalDivider(c, parent);
     }
@@ -52,6 +53,9 @@ public class My_ItemDecoration extends RecyclerView.ItemDecoration {
             int top = child.getTop() - params.topMargin;
             int right = left + mDivider.getIntrinsicWidth();
             int bottom = child.getBottom() + params.bottomMargin;
+            if (isLastColumn(child, parent)) {
+                right = left;
+            }
             mDivider.setBounds(left, top, right, bottom);
             mDivider.draw(c);
         }
@@ -66,6 +70,9 @@ public class My_ItemDecoration extends RecyclerView.ItemDecoration {
             int top = child.getBottom() + params.bottomMargin;
             int right = child.getRight() + params.rightMargin;
             int bottom = top + mDivider.getIntrinsicHeight();
+            if (isLastRaw(child, parent)) {
+                bottom = top;
+            }
             mDivider.setBounds(left, top, right, bottom);
             mDivider.draw(c);
         }
@@ -73,14 +80,63 @@ public class My_ItemDecoration extends RecyclerView.ItemDecoration {
 
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-        super.getItemOffsets(outRect, view, parent, state);
+        /**
+         * outRect 就是要来记录 各个item的  上下左右的  偏移距离的
+         */
+//        super.getItemOffsets(outRect, view, parent, state);
 //        if (mOrientation == LinearLayoutManager.HORIZONTAL) {
 //            outRect.set(0, 0, mDivider.getIntrinsicWidth(), 0);
 //        } else {////mOrientation == LinearLayoutManager.VERTICAL
 //            outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
 //        }
 
-        outRect.set(0, 0, mDivider.getIntrinsicWidth(), mDivider.getIntrinsicHeight());
-//        outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
+        int right = mDivider.getIntrinsicWidth();
+        int bottom = mDivider.getIntrinsicHeight();
+
+        if (isLastColumn(view, parent)) {
+            right = 0;
+        }
+
+        if (isLastRaw(view, parent)) {
+            bottom = 0;
+        }
+
+        outRect.set(0, 0, right, bottom);
+    }
+
+    private boolean isLastColumn(View view, RecyclerView parent) {
+        int position = parent.getChildAdapterPosition(view);
+        int spanCount = getSpanCount(parent);
+        int totalCount = parent.getAdapter().getItemCount();
+
+        if (0 == (position + 1) % (spanCount) || position == (totalCount - 1)) {
+            return true;
+        }
+        return false;
+    }
+
+
+    private boolean isLastRaw(View view, RecyclerView parent) {
+        int position = parent.getChildAdapterPosition(view);
+        int spanCount = getSpanCount(parent);
+        int totalCount = parent.getAdapter().getItemCount();
+
+        int totalRaw = (int) Math.ceil((double) totalCount / (double) spanCount);
+
+        int currentRaw = position / spanCount + 1;
+        if (currentRaw == totalRaw) {
+            return true;
+        }
+        return false;
+    }
+
+    private int getSpanCount(RecyclerView parent) {
+        RecyclerView.LayoutManager layoutManager = parent.getLayoutManager();
+        if (layoutManager instanceof GridLayoutManager) {
+            GridLayoutManager gridLayoutManager = (GridLayoutManager) layoutManager;
+            return gridLayoutManager.getSpanCount();
+        } else {
+            throw new IllegalArgumentException("the layoutManager is not GridLayoutManager!!!");
+        }
     }
 }

@@ -56,6 +56,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         return null == data ? 0 : data.size();
     }
 
+
     public void addData(String item) {
         data.add(3, item);
         this.notifyItemInserted(3);

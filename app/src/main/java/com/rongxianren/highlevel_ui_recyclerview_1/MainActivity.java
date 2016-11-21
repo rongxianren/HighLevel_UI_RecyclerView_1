@@ -35,4 +35,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, RecyclerView_ItemDecoration_Activity.class);
         startActivity(intent);
     }
+
+    public void go_Header_RecyclerView(View view) {
+        Intent intent = new Intent(this, Header_WrappRecyclerView.class);
+        startActivity(intent);
+    }
 }

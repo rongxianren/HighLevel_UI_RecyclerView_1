@@ -7,34 +7,34 @@
     android:orientation="vertical"
     tools:context="com.rongxianren.highlevel_ui_recyclerview_1.MainActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBlue"
-        android:orientation="horizontal">
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:background="@color/colorBlue"-->
+    <!--android:orientation="horizontal">-->
 
-        <Button
-            android:id="@+id/btn_change"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="change"
-            android:text="切换" />
+    <!--&lt;!&ndash;<Button&ndash;&gt;-->
+    <!--&lt;!&ndash;android:id="@+id/btn_change"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:onClick="change"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:text="切换" />&ndash;&gt;-->
 
-        <Button
-            android:id="@+id/btn_add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="addItem"
-            android:text="add_item" />
+    <!--<Button-->
+    <!--android:id="@+id/btn_add"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:onClick="addItem"-->
+    <!--android:text="add_item" />-->
 
-        <Button
-            android:id="@+id/btn_remove"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="removeItem"
-            android:text="remove_item" />
+    <!--<Button-->
+    <!--android:id="@+id/btn_remove"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:onClick="removeItem"-->
+    <!--android:text="remove_item" />-->
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
 
     <android.support.v7.widget.RecyclerView

@@ -48,7 +48,7 @@ public class RecyclerView_ItemDecoration_Activity extends AppCompatActivity impl
         }
         myRecyclerViewAdapter = new MyRecyclerViewAdapter(dataList);
         myRecyclerViewAdapter.setOnItemClickListener(this);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(myRecyclerViewAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());////添加默认item动画效果
         recyclerView.addItemDecoration(new My_ItemDecoration(this, LinearLayoutManager.VERTICAL));
