@@ -2,7 +2,6 @@ package com.rongxianren.highlevel_ui_recyclerview_1.itemTouchHelper;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
@@ -40,7 +39,7 @@ public class ItemTouchHelperCallBack extends ItemTouchHelper.Callback {
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
         if (null != itemTouchMoveListener) {
-            itemTouchMoveListener.onRemove(viewHolder.getAdapterPosition());
+//            itemTouchMoveListener.onRemove(viewHolder.getAdapterPosition());
         }
     }
 
@@ -52,7 +51,6 @@ public class ItemTouchHelperCallBack extends ItemTouchHelper.Callback {
     @Override
     public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {
         if (actionState != ItemTouchHelper.ACTION_STATE_IDLE) {
-            viewHolder.itemView.setAlpha(0.5f);
             int color = viewHolder.itemView.getResources().getColor(R.color.colorRed);
             viewHolder.itemView.setBackgroundColor(color);
         }
@@ -62,14 +60,22 @@ public class ItemTouchHelperCallBack extends ItemTouchHelper.Callback {
     @Override
     public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
         super.clearView(recyclerView, viewHolder);
-        viewHolder.itemView.setAlpha(1);
         viewHolder.itemView.setBackgroundColor(Color.parseColor("#CCCCCC"));
     }
 
     @Override
     public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
-        super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
-
+        System.out.println("--------dx------- = " + dX);
+        float factor = 1 - Math.abs(dX / viewHolder.itemView.getWidth());
+//        viewHolder.itemView.setAlpha(factor);
+//        viewHolder.itemView.setScaleX(factor);
+//        viewHolder.itemView.setScaleY(factor);
+        if (Math.abs(dX) <= viewHolder.itemView.getWidth() / 3) {
+            viewHolder.itemView.setTranslationX(dX);
+        } else {
+            viewHolder.itemView.setTranslationX(-(viewHolder.itemView.getWidth() / 3));
+        }
+//        super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
     }
 
 }
