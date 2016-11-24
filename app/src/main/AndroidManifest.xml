@@ -17,7 +17,8 @@
         </activity>
         <activity android:name=".RecyclerViewActivity" />
         <activity android:name=".RecyclerView_ItemDecoration_Activity" />
-        <activity android:name=".Header_WrappRecyclerView"></activity>
+        <activity android:name=".Header_WrappRecyclerViewActivity" />
+        <activity android:name=".RecyclerView_ItemTouchHelper_Activity"></activity>
     </application>
 
 </manifest>

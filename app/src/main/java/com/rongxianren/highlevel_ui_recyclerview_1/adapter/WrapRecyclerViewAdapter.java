@@ -85,11 +85,6 @@ public class WrapRecyclerViewAdapter extends RecyclerView.Adapter {
         return mFooterViews.size();
     }
 
-    public class ItemViewHolder extends RecyclerView.ViewHolder {
-        public ItemViewHolder(View itemView) {
-            super(itemView);
-        }
-    }
 
     public class HeaderViewHolder extends RecyclerView.ViewHolder {
         public HeaderViewHolder(View itemView) {

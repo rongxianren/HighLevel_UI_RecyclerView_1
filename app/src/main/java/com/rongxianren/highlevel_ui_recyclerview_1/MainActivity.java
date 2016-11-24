@@ -3,16 +3,8 @@ package com.rongxianren.highlevel_ui_recyclerview_1;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 /**
  * author wty
@@ -37,7 +29,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void go_Header_RecyclerView(View view) {
-        Intent intent = new Intent(this, Header_WrappRecyclerView.class);
+        Intent intent = new Intent(this, Header_WrappRecyclerViewActivity.class);
+        startActivity(intent);
+    }
+
+    public void go_ItemTouchHelper_RecyclerView(View view) {
+        Intent intent = new Intent(this, RecyclerView_ItemTouchHelper_Activity.class);
         startActivity(intent);
     }
 }

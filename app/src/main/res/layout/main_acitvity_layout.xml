@@ -22,4 +22,10 @@
         android:layout_height="wrap_content"
         android:onClick="go_Header_RecyclerView"
         android:text="HeaderWrapRecyclerView" />
+    <!--go_ItemTouchHelper_RecyclerView-->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="go_ItemTouchHelper_RecyclerView"
+        android:text="ItemTouchHelper" />
 </LinearLayout>
